@@ -118,12 +118,6 @@ class Main {
 		}
 	}
 
-	function checkUpdate() {
-		final latest = try Connection.getLatestVersion(HAXELIB_LIBNAME) catch (_:Dynamic) null;
-		if (latest != null && latest > VERSION)
-			Cli.print('\nA new version ($latest) of haxelib is available.\nDo `haxelib --global update $HAXELIB_LIBNAME` to get the latest version.\n');
-	}
-
 	function getArgument(prompt:String){
 		final given = argsIterator.next();
 		if (given != null)
@@ -282,7 +276,6 @@ class Main {
 				#if !js
 				loadProxy();
 				#end
-				checkUpdate();
 			}
 			commandInfo.command();
 		} catch (e:RepoManager.InvalidConfiguration) {
